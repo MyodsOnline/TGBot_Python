@@ -19,7 +19,7 @@ KEYBOARD = {
     'SEMIPRODUCT': emojize(':pizza: Полуфабрикаты'),
     'GROCERY': emojize(':bread: Бакалея'),
     'ICE_CREAM': emojize(':shaved_ice: Мороженое'),
-    '<<': emojize('⏪'),
+    '<<': emojize('⏪ Вернуться'),
     '>>': emojize('⏩'),
     'BACK_STEP': emojize('◀️'),
     'NEXT_STEP': emojize('▶️'),
