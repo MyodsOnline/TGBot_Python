@@ -1,5 +1,5 @@
 
-trading_store = 'store info'
+trading_store = '<i>store info</i>'
 settings_info = 'settings info'
 var = """<b>Testing string</b>"""
 
