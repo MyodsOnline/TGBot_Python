@@ -25,6 +25,14 @@ class HandlerAllText(Handler):
                               f'you come back',
                               reply_markup=self.keyboards.start_menu())
 
+    def pressed_btn_category(self, message):
+        self.bot.send_message(message.chat.id,
+                              f'Category menu',
+                              reply_markup=self.keyboards.remove_menu())
+        self.bot.send_message(message.chat.id,
+                              f'Make your choose',
+                              reply_markup=self.keyboards.category_menu())
+
     def handle(self):
         @self.bot.message_handler(func=lambda message:True)
         def handle(message):
@@ -34,3 +42,5 @@ class HandlerAllText(Handler):
                 self.pressed_btn_settings(message)
             if message.text == config.KEYBOARD['<<']:
                 self.pressed_btn_back(message)
+            if message.text == config.KEYBOARD['CHOOSE_GOODS']:
+                self.pressed_btn_category(message)
