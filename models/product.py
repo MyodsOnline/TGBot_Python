@@ -2,7 +2,7 @@ from sqlalchemy import Column, String, Boolean, Integer, Float, ForeignKey
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.declarative import declarative_base
 
-from category import Category
+from models.category import Category
 
 Base = declarative_base()
 

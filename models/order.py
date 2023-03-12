@@ -2,7 +2,7 @@ from sqlalchemy import DateTime, Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.declarative import declarative_base
 
-from product import Products
+from .product import Products
 
 Base = declarative_base()
 

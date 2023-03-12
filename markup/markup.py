@@ -1,4 +1,5 @@
-from telebot.types import KeyboardButton, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telebot.types import KeyboardButton, ReplyKeyboardMarkup, ReplyKeyboardRemove, \
+    InlineKeyboardMarkup, InlineKeyboardButton
 from settings import config
 from database.dbalchemy import DBManager
 
@@ -10,6 +11,10 @@ class Keyboards:
 
     def set_btn(self, name, step=0, quantity=0):
         return KeyboardButton(config.KEYBOARD[name])
+
+    @staticmethod
+    def set_inline_btn(name):
+        return InlineKeyboardButton(str(name), callback_data=str(name.id))
 
     @staticmethod
     def remove_menu():
@@ -38,8 +43,21 @@ class Keyboards:
 
     def category_menu(self):
         self.markup = ReplyKeyboardMarkup(True, True, row_width=1)
-        self.markup.add(self.set_btn('SEMIPRODUCT'))
-        self.markup.add(self.set_btn('GROCERY'))
-        self.markup.add(self.set_btn('ICE_CREAM'))
+        # self.markup.add(self.set_btn('SEMIPRODUCT'))
+        # self.markup.add(self.set_btn('GROCERY'))
+        # self.markup.add(self.set_btn('ICE_CREAM'))
+
+        itm_btn_1 = self.set_btn('SEMIPRODUCT')
+        itm_btn_2 = self.set_btn('GROCERY')
+        itm_btn_3 = self.set_btn('ICE_CREAM')
+        self.markup.row(itm_btn_1, itm_btn_2, itm_btn_3)
+
         self.markup.row(self.set_btn('<<'), self.set_btn('ORDER'))
+        return self.markup
+
+    def set_select_category(self, category):
+        self.markup = InlineKeyboardMarkup(row_width=1)
+        for itm in self.DB.select_all_products_category(category):
+            self.markup.add(self.set_inline_btn(itm))
+
         return self.markup
