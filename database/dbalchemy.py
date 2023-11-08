@@ -6,6 +6,7 @@ from database.dbcore import Base
 
 from settings import config
 from models.product import Products
+from models.category import Category
 
 
 class Singleton(type):
@@ -29,9 +30,10 @@ class DBManager(metaclass=Singleton):
 
         if not path.isfile(config.DATABASE):
             Base.metadata.create_all(self.engine)
-            print('WE CREATE A DATABASE')
+            print('DATABASE CREATED')
 
     def select_all_products_category(self, category):
+        print('We are here')
         result = self._session.query(Products).filter_by(category_id=category).all()
         if result:
             print(result)
@@ -47,4 +49,4 @@ class DBManager(metaclass=Singleton):
 
 if __name__ == '__main__':
     db = DBManager()
-    db.select_all_products_category(1)
+    # db.select_all_products_category(1)
